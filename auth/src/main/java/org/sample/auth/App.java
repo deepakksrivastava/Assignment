@@ -55,7 +55,7 @@ public class App {
 					  .setSubject("users/TzMUocMF4p")
 					  .setExpiration(new Date(2017, 04, 22))
 					  .claim("name", userid)
-					  .claim("scope", "self groups/admins")
+					  .claim("scope", "admin")
 					  .signWith(
 					    SignatureAlgorithm.HS256,
 					    "secret".getBytes("UTF-8")
@@ -83,7 +83,7 @@ public class App {
 	@RequestMapping(value="/secure-resource", method=RequestMethod.GET)
 	@ResponseBody
 	String authorization(HttpServletRequest request, 
-			@RequestHeader("Authorization")  String authZtoken) throws ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, SignatureException, IllegalArgumentException, UnsupportedEncodingException {
+			@RequestHeader("Authorization")  String authZtoken) throws Exception {
 		//AccountRequest accountRequest =new AccountRequest("u1","p1");
 		//AccountRequestServiceImpl accountRequestServiceImpl = new AccountRequestServiceImpl();
 		//accountRequestService.create(accountRequest);
@@ -92,10 +92,13 @@ public class App {
 		  .setSigningKey("secret".getBytes("UTF-8"))
 		  .parseClaimsJws(jwt);
 		String scope = (String) claims.getBody().get("scope");
-		//if(accountRequestService.getAccountRequest(userid))
-		//{
-			
-		//}
+		String username = (String) claims.getBody().get("name");
+		
+		if(!accountRequestService.getAccountRequest(username).getScope().equals(scope))
+		{
+			throw new Exception("authorization failed!");
+		}
+		
 		//assertEquals(scope, "self groups/admins");
 		return scope;
 	}
