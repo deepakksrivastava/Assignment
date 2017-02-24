@@ -24,4 +24,9 @@ public AccountRequest getAccountRequest(String userName) {
 	 return accountRequestRepository.getAccountRequest(userName);
 	
 }
+@Override
+public AccountRequest getScope(String userName) {
+	// TODO Auto-generated method stub
+	  return accountRequestRepository.getScope(userName);
+}
 }

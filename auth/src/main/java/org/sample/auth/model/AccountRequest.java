@@ -24,12 +24,15 @@ public class AccountRequest implements Serializable{
 	private String username;
     @Column(name="password")
     private String password;
+    @Column(name="scope")
+    private String scope;
     public AccountRequest() {
     }
 
-    public AccountRequest(String username,String password) {
+    public AccountRequest(String username,String password,String scope) {
         this.username = username;
         this.password = password;
+        this.scope= scope;
     }
 
    /* public Long getId() {
@@ -55,4 +58,11 @@ public class AccountRequest implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+    public void setScope(String scope){
+    }
+    public String getScope()
+    {
+    	return scope;
+    }
+    
 }

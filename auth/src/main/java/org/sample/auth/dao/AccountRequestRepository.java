@@ -16,6 +16,7 @@ public interface AccountRequestRepository extends Repository <AccountRequest,Lon
 	 
 	 //public AccountRequest getAccountRequest(Long id);
 	 public AccountRequest getAccountRequest(String userName);
+	 public AccountRequest getScope(String userName);
 
 	 
 	 public void delete(String userName) ;

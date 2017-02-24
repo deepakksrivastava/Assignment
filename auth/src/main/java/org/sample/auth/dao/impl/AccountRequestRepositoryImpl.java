@@ -53,6 +53,12 @@ public class AccountRequestRepositoryImpl implements AccountRequestRepository  {
 	 }
 	 }
 
+	@Override
+	public AccountRequest getScope(String userName) {
+		// TODO Auto-generated method stub
+		 return entityManager.find(AccountRequest.class, userName);
+	}
+
 	
 
 

@@ -92,6 +92,10 @@ public class App {
 		  .setSigningKey("secret".getBytes("UTF-8"))
 		  .parseClaimsJws(jwt);
 		String scope = (String) claims.getBody().get("scope");
+		//if(accountRequestService.getAccountRequest(userid))
+		//{
+			
+		//}
 		//assertEquals(scope, "self groups/admins");
 		return scope;
 	}
